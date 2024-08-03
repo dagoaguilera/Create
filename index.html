@@ -7,27 +7,40 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="theme-switch-wrapper">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-        </label>
+    <div class="gallery">
+        <img class="image" data-status="inactive" src="images/IMG_0351.jpg"/>
+        <img class="image" data-status="inactive" src="images/IMG_1044.jpg" />
+        <img class="image" data-status="inactive" src="images/IMG_0979.jpg" />
+        <img class="image" data-status="inactive" src="images/IMG_0351.jpg" />
+        <img class="image" data-status="inactive" src="images/IMG_0976.jpg" />
+        <img class="image" data-status="inactive" src="images/IMG_0360.jpg" />
+        <img class="image" data-status="inactive" src="images/IMG_0553.jpg" />
     </div>
-    <img class="image" data-index="0" data-status="inactive" src="images/IMG_0351.jpg"/>
-    <img class="image" data-index="1" data-status="inactive" src="images/IMG_0464.jpg" />
-    <img class="image" data-index="2" data-status="inactive" src="images/IMG_1044.jpg" />
-    <img class="image" data-index="3" data-status="inactive" src="images/IMG_0405.jpg" />
-    <img class="image" data-index="4" data-status="inactive" src="images/IMG_0979.jpg" />
-    <img class="image" data-index="5" data-status="inactive" src="images/IMG_0351.jpg" />
-    <img class="image" data-index="6" data-status="inactive" src="images/IMG_0976.jpg" />
-    <img class="image" data-index="7" data-status="inactive" src="images/IMG_0360.jpg" />
-    <img class="image" data-index="8" data-status="inactive" src="images/IMG_0553.jpg" />
-    <img class="image" data-index="9" data-status="inactive" src="images/IMG_1051.jpg" />
-
-    <a id="source-link" class="meta-link" href="https://github.com/dagoaguilera" target="_blank">
-        <i class="fa-solid fa-link"></i>
-        <span>GitHub</span>
-    </a>
+    
+    <div id="bottom-menu">
+        <div id="photographer-menu">
+            <span id="photographer-name">Dago Aguilera</span>
+            <div id="menu-options" class="hidden">
+                <a class="menu-option" href="gallery.html">Gallery</a>
+                <a class="menu-option" href="videos.html">Videos</a>
+                <a id="source-link" class="menu-option" href="https://github.com/dagoaguilera" target="_blank">GitHub</a>
+                <span class="menu-option">
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider round"></div>
+                        </label>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <div id="categories">
+            <!-- <span class="category">Category 1</span>
+            <span class="category">Category 2</span>
+            <span class="category">Category 3</span> -->
+        </div>
+        <span id="photo-count"><span id="current-photo">0001</span>/<span id="total-photos"></span></span>
+    </div>
 
     <script src="script.js"></script>
 </body>

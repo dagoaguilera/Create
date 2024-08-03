@@ -1,19 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+:root {
+  --background-color: white;
+  --text-color: black;
+  --slider-circle-color: var(--background-color);
+  --font-family: 'Inter', serif; 
+  --font-weight-normal: 400; 
+}
+
+.dark-mode {
+  --background-color: black;
+  --text-color: white;
+  --slider-circle-color: var(--background-color);
+}
+
 body {
   background-color: var(--background-color);
   color: var(--text-color);
   height: 100vh;
-  margin: 0px;
+  margin: 0;
   overflow: hidden;
+  font-family: var(--font-family); 
+  font-weight: var(--font-weight-normal); 
 }
 
-:root {
-  --background-color: black;
-  --text-color: white;
-}
-
-.light-mode {
-  --background-color: white;
-  --text-color: black;
+* {
+  font-weight: var(--font-weight-normal);
 }
 
 .image {
@@ -30,61 +42,48 @@ body {
   display: block;
 }
 
-/* -- Theme Switch Styles -- */
-
-:root {
-  --switch-width: 20px; /* Width of the switch */
-  --switch-height: 10px; /* Height of the switch */
-  --circle-diameter: calc(min(var(--switch-width), var(--switch-height)) * 0.85); /* Diameter of the circle */
-  --circle-offset: calc((var(--switch-height) - var(--circle-diameter)) / 2); /* (switch-height - circle-diameter) / 2 */
-  --checked-transform: calc(var(--switch-width) - var(--circle-diameter) - var(--circle-offset));
-}
-
 .theme-switch-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center; 
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 10001; 
-  width: var(--switch-width); 
-  height: var(--switch-height); 
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .theme-switch {
   display: inline-block;
-  height: var(--switch-height);
-  width: var(--switch-width);
   position: relative;
+  width: 50px;
+  height: 25px;
 }
 
 .theme-switch input {
-  display: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .slider {
-  background-color: #ccc;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
   position: absolute;
-  right: 0;
+  cursor: pointer;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
   transition: .4s;
-  border-radius: calc(var(--switch-height) / 2); 
+  border-radius: 15px;
 }
 
 .slider:before {
-  background-color: white;
-  bottom: var(--circle-offset);
-  content: "";
-  height: var(--circle-diameter);
-  left: var(--circle-offset);
   position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--slider-circle-color);
   transition: .4s;
-  width: var(--circle-diameter);
-  border-radius: 50%; 
 }
 
 input:checked + .slider {
@@ -92,61 +91,92 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(var(--checked-transform));
+  transform: translateX(25px);
 }
 
-.slider.round {
-  border-radius: calc(var(--switch-height) / 2); 
-}
-/* -- GitHub Styles -- */
-
-body.menu-toggled > .meta-link > span {
-  color: rgb(30, 30, 30);
-}
-
-#source-link {
-  bottom: 20px;
-}
-
-#source-link > i {
-  color: rgb(94, 106, 210);
-}
-
-#yt-link > i {
-  color: rgb(239, 83, 80);
-}
-
-.meta-link {
+#bottom-menu {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(3px);
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  bottom: 10px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-  cursor: pointer;  
-  display: inline-flex;
-  gap: 5px;
-  left: 10px;
-  padding: 10px 20px;
   position: fixed;
-  text-decoration: none;
-  transition: background-color 400ms, border-color 400ms;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  box-sizing: border-box;
   z-index: 10000;
 }
 
-.meta-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+#photographer-menu {
+  position: relative;
+  cursor: pointer;
+  z-index: 10003;
 }
 
-.meta-link > i, .meta-link > span {
-  height: 20px;
-  line-height: 20px;
+#menu-options {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10004;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  width: 100%;
+  max-width: 250px;
+  box-sizing: border-box;
 }
 
-.meta-link > span {
-  color: var(--text-color);
-  font-family: "Rubik", sans-serif;
-  font-weight: 500;
+#menu-options.show {
+  display: block;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.menu-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  box-sizing: border-box;
+  border-bottom: 1px solid #4f4b4b;
+  text-decoration: none;
+  color: black; 
+}
+
+.menu-option:last-child {
+  border-bottom: none;
+}
+
+.menu-option:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#categories {
+  display: flex;
+  gap: 10px;
+  position: absolute; 
+  left: 50%; 
+  transform: translateX(-50%);
+}
+
+.category {
+  margin: 0 10px;
+}
+
+#photographer-name, #photo-count {
+  font-weight: var(--font-weight-normal); 
 }
