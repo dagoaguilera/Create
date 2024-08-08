@@ -3,6 +3,8 @@
 :root {
   --background-color: white;
   --text-color: black;
+  --menu-background-color: white;
+  --menu-text-color: black;
   --slider-circle-color: var(--background-color);
   --font-family: 'Inter', serif; 
   --font-weight-normal: 400; 
@@ -11,6 +13,8 @@
 .dark-mode {
   --background-color: black;
   --text-color: white;
+  --menu-background-color: black;
+  --menu-text-color: white;
   --slider-circle-color: var(--background-color);
 }
 
@@ -123,8 +127,8 @@ input:checked + .slider:before {
   position: absolute;
   bottom: 100%;
   left: 0;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--menu-background-color);
+  color: var(--menu-text-color);
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -154,7 +158,7 @@ input:checked + .slider:before {
   box-sizing: border-box;
   border-bottom: 1px solid #4f4b4b;
   text-decoration: none;
-  color: black; 
+  color: var(--menu-text-color);
 }
 
 .menu-option:last-child {
