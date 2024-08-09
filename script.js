@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let globalIndex = 0,
         last = { x: 0, y: 0 },
-        threshold = window.innerWidth / 20;
+        threshold = window.innerWidth / 50;
 
     const activate = (image, x, y) => {
         image.style.left = `${x}px`;
