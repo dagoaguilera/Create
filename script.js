@@ -81,15 +81,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggleMenu = () => {
         const isVisible = menuOptions.classList.contains('show');
-
         if (isVisible) {
             menuOptions.classList.remove('show');
+            document.removeEventListener('click', closeMenuOnClickOutside);
         } else {
             menuOptions.classList.add('show');
+            setTimeout(() => {
+                document.addEventListener('click', closeMenuOnClickOutside);
+            }, 0);
         }
     };
 
-    photographerName.addEventListener('click', toggleMenu);
+    const closeMenuOnClickOutside = (e) => {
+        if (!menuOptions.contains(e.target) && !photographerName.contains(e.target)) {
+            menuOptions.classList.remove('show');
+            document.removeEventListener('click', closeMenuOnClickOutside);
+        }
+    };
+
+    photographerName.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
 
     menuOptions.addEventListener('mouseleave', () => {
         menuOptions.classList.remove('show');
@@ -102,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             menuOptions.classList.remove('show');
+            document.removeEventListener('click', closeMenuOnClickOutside);
         }
     });
 
