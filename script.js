@@ -91,6 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     photographerName.addEventListener('click', toggleMenu);
 
+    menuOptions.addEventListener('mouseleave', () => {
+        menuOptions.classList.remove('show');
+    });
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             menuOptions.classList.remove('show');
