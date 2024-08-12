@@ -6,8 +6,8 @@
   --menu-background-color: white;
   --menu-text-color: black;
   --slider-circle-color: var(--background-color);
-  --font-family: 'Inter', serif; 
-  --font-weight-normal: 400; 
+  --font-family: 'Georgia', serif; 
+  --font-weight-normal: 550; 
 }
 
 .dark-mode {
