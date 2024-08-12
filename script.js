@@ -78,23 +78,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const photographerName = document.getElementById('photographer-name');
     const menuOptions = document.getElementById('menu-options');
+    let menuIsOpen = false;
 
     const toggleMenu = () => {
-        const isVisible = menuOptions.classList.contains('show');
-        if (isVisible) {
+        if (menuIsOpen) {
             menuOptions.classList.remove('show');
-            document.removeEventListener('click', closeMenuOnClickOutside);
+            menuIsOpen = false;
         } else {
             menuOptions.classList.add('show');
-            setTimeout(() => {
-                document.addEventListener('click', closeMenuOnClickOutside);
-            }, 0);
+            menuIsOpen = true;
         }
     };
 
     const closeMenuOnClickOutside = (e) => {
         if (!menuOptions.contains(e.target) && !photographerName.contains(e.target)) {
             menuOptions.classList.remove('show');
+            menuIsOpen = false;
             document.removeEventListener('click', closeMenuOnClickOutside);
         }
     };
@@ -102,19 +101,28 @@ document.addEventListener('DOMContentLoaded', () => {
     photographerName.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleMenu();
+        if (menuIsOpen) {
+            setTimeout(() => {
+                document.addEventListener('click', closeMenuOnClickOutside);
+            }, 0);
+        }
     });
 
     menuOptions.addEventListener('mouseleave', () => {
-        menuOptions.classList.remove('show');
+        if (menuIsOpen) {
+            menuOptions.classList.remove('show');
+            menuIsOpen = false;
+        }
     });
 
     menuOptions.addEventListener('touchend', () => {
-        menuOptions.classList.remove('show');
+        // Prevent menu from closing when touching within the menu
     });
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             menuOptions.classList.remove('show');
+            menuIsOpen = false;
             document.removeEventListener('click', closeMenuOnClickOutside);
         }
     });
