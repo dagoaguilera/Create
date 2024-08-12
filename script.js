@@ -95,6 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
         menuOptions.classList.remove('show');
     });
 
+    menuOptions.addEventListener('touchend', () => {
+        menuOptions.classList.remove('show');
+    });
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             menuOptions.classList.remove('show');
