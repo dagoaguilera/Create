@@ -53,29 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updatePhotoCount();
 
-    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-
-    if (currentTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        toggleSwitch.checked = false;
-    } else {
-        document.body.classList.add('light-mode');
-        toggleSwitch.checked = true;
-    }
-
-    toggleSwitch.addEventListener('change', e => {
-        if (e.target.checked) {
-            document.body.classList.add('light-mode');
-            document.body.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.body.classList.add('dark-mode');
-            document.body.classList.remove('light-mode');
-            localStorage.setItem('theme', 'dark');
-        }
-    });
-
     const photographerName = document.getElementById('photographer-name');
     const menuOptions = document.getElementById('menu-options');
     let menuIsOpen = false;
