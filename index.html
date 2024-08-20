@@ -27,21 +27,33 @@
 
     <div id="bottom-menu">
         <div id="photographer-menu">
-            <span id="photographer-name">Dago Aguilera</span>
-            <div id="menu-options" class="hidden">
-               <!--- <a class="menu-option" href="gallery.html">Gallery</a>
-                <a class="menu-option" href="videos.html">Videos</a> -->
-                <a id="source-link" class="menu-option" href="https://github.com/dagoaguilera" target="_blank">GitHub</a>
-            </div>
+            <span id="photographer-name" onclick="openNav()">Dago Aguilera</span>
         </div>
         <div id="categories">
-            <!-- <span class="category">Category 1</span>
-            <span class="category">Category 2</span>
-            <span class="category">Category 3</span> -->
         </div>
-        <span id="photo-count"><span id="current-photo">0001</span>/<span id="total-photos"></span></span>
+        <span id="photo-count"><span id="current-photo">0</span>/<span id="total-photos"></span></span>
+    </div>
+
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <a href="https://github.com/dagoaguilera" target="_blank">
+                <img src="images/github.png" alt="GitHub" style="width: 120px; height: 120px;">  
+            </a>
+            <a href="https://open.spotify.com/playlist/3QK2sHDIBsiJ6ZgEhehq3C?si=40a8f1e2631748e9" target="_blank">
+                <img src="images/spotify.png" alt="Spotify" style="width: 120px; height: 120px;">  
+            </a>
+            <a href="https://www.youtube.com/@abcdago" target="_blank">
+                <img src="images/youtube.png" alt="YouTube" style="width: 120px; height: 120px;">
+            </a>
+        </div>
+        
+        <div class="vertical-overlay-content">
+            <a href="gallery.html" target="_blank">Gallery View</a>
+        </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

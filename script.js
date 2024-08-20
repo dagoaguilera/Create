@@ -85,24 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    menuOptions.addEventListener('mouseleave', () => {
-        if (menuIsOpen) {
-            menuOptions.classList.remove('show');
-            menuIsOpen = false;
-        }
-    });
-
-    menuOptions.addEventListener('touchend', () => {
-        // Prevent menu from closing when touching within the menu
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            menuOptions.classList.remove('show');
-            menuIsOpen = false;
-            document.removeEventListener('click', closeMenuOnClickOutside);
-        }
-    });
-
     window.addEventListener('load', updatePhotoCount);
 });
+
+function openNav() {
+    document.getElementById("myNav").style.display = "block";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.display = "none";
+}
