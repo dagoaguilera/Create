@@ -91,7 +91,7 @@ body {
   overflow: hidden;
   transition: 0.5s;
   display: none;
-  padding: 2vw; /* Responsive padding */
+  padding: 2vw; 
   box-sizing: border-box;
 }
 
@@ -99,7 +99,7 @@ body {
   position: absolute;
   top: 2vw;
   right: 2vw;
-  font-size: 5vw; /* Responsive font size */
+  font-size: 5vw; 
   color: white;
   text-decoration: none;
 }
@@ -113,33 +113,36 @@ body {
   place-items: center;
   grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
   grid-auto-flow: row;
-  gap: 2vh; /* Responsive gap */
+  gap: 2vh; 
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  overflow: hidden; /* Prevent overflow */
-  padding: 2vh 0; /* Responsive padding */
+  overflow: hidden; 
+  padding: 2vh 0; 
 }
 
 .vertical-overlay-content a {
   display: flex;
+  flex-direction: column; 
   align-items: center;
   justify-content: center;
-  padding: 2vh; /* Responsive padding */
+  padding: 2vh;
   text-decoration: none;
-  font-size: 5vw; /* Responsive font size */
+  font-size: 5vw; 
   color: white;
   width: auto;
+  text-align: center; 
 }
 
 .vertical-overlay-content a img {
-  margin-right: 2vw; /* Responsive margin */
-  max-width: 20vw; /* Responsive image width */
-  max-height: 20vh; /* Responsive image height */
-  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 1vh; 
+  max-width: 20vw; 
+  max-height: 20vh; 
+  height: auto; 
 }
 
 .vertical-overlay-content a:hover,
 .vertical-overlay-content a:focus {
   color: #f1f1f1;
 }
+
