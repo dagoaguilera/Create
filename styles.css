@@ -89,23 +89,52 @@ body {
   top: 0;
   background-color: rgba(0, 0, 0, 0.9);
   overflow: hidden;
-  transition: 0.5s;
-  display: none;
-  padding: 2vw; 
+  padding: 2vw;
   box-sizing: border-box;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.overlay.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.overlay.hide {
+  transform: translateY(100%);
+  opacity: 0;
 }
 
 .overlay .closebtn {
   position: absolute;
   top: 2vw;
   right: 2vw;
-  font-size: 5vw; 
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; 
   color: white;
-  text-decoration: none;
+  border: none;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s; 
+  text-decoration: none; 
 }
 
 .overlay .closebtn:hover {
-  color: #bbb;
+  color: rgba(255, 255, 255, 0.8); 
+  transform: scale(1.1);
+}
+
+.overlay .closebtn:active {
+  color: rgba(255, 255, 255, 0.6);
+  transform: scale(0.9);
 }
 
 .vertical-overlay-content {
@@ -113,36 +142,35 @@ body {
   place-items: center;
   grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
   grid-auto-flow: row;
-  gap: 2vh; 
+  gap: 2vh;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  overflow: hidden; 
-  padding: 2vh 0; 
+  overflow: hidden;
+  padding: 2vh 0;
 }
 
 .vertical-overlay-content a {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2vh;
   text-decoration: none;
-  font-size: 5vw; 
+  font-size: 5vw;
   color: white;
   width: auto;
-  text-align: center; 
+  text-align: center;
 }
 
 .vertical-overlay-content a img {
-  margin-bottom: 1vh; 
-  max-width: 20vw; 
-  max-height: 20vh; 
-  height: auto; 
+  margin-bottom: 1vh;
+  max-width: 20vw;
+  max-height: 20vh;
+  height: auto;
 }
 
 .vertical-overlay-content a:hover,
 .vertical-overlay-content a:focus {
   color: #f1f1f1;
 }
-

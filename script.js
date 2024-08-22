@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (distanceFromLast(e.clientX, e.clientY) > threshold) {
             const leadIndex = globalIndex % images.length;
             const tailIndex = (globalIndex - 1 + images.length) % images.length;
-            
+
             const lead = images[leadIndex];
             const tail = images[tailIndex];
 
@@ -59,16 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggleMenu = () => {
         if (menuIsOpen) {
+            menuOptions.classList.add('hide');
             menuOptions.classList.remove('show');
             menuIsOpen = false;
         } else {
             menuOptions.classList.add('show');
+            menuOptions.classList.remove('hide');
             menuIsOpen = true;
         }
     };
 
     const closeMenuOnClickOutside = (e) => {
         if (!menuOptions.contains(e.target) && !photographerName.contains(e.target)) {
+            menuOptions.classList.add('hide');
             menuOptions.classList.remove('show');
             menuIsOpen = false;
             document.removeEventListener('click', closeMenuOnClickOutside);
@@ -89,9 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function openNav() {
-    document.getElementById("myNav").style.display = "block";
+    const overlay = document.getElementById("myNav");
+    overlay.style.display = 'block';
+    setTimeout(() => {
+        overlay.classList.add("show");
+        overlay.classList.remove("hide");
+    }, 0);
 }
 
 function closeNav() {
-    document.getElementById("myNav").style.display = "none";
+    const overlay = document.getElementById("myNav");
+    overlay.classList.add("hide");
+    overlay.classList.remove("show");
+    
+    overlay.addEventListener('transitionend', () => {
+        if (overlay.classList.contains('hide')) {
+            overlay.style.display = 'none'; 
+        }
+    }, { once: true });
 }
