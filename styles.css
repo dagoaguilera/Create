@@ -37,15 +37,18 @@ body {
   width: 62vmin;
   position: absolute;
   transform: translate(-50%, -50%);
+  transition: opacity 0s, transform 0s; 
 }
 
 .image[data-status="inactive"] {
-  display: none;
+  opacity: 0;
+  display: block; 
 }
 
 .image[data-status="active"] {
-  display: block;
+  opacity: 1;
 }
+
 
 #bottom-menu {
   display: flex;

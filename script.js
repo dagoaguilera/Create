@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPhoto = document.getElementById('current-photo');
     const totalPhotos = images.length;
 
-    let globalIndex = 0,
+    let globalIndex = -1,
         last = { x: 0, y: 0 },
         threshold = window.innerWidth / 40;
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         image.style.top = `${y}px`;
         image.style.zIndex = globalIndex;
 
-        image.dataset.status = "active";
+        image.dataset.status = "active"; 
 
         last = { x, y };
     }
@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const handleOnMove = e => {
         if (distanceFromLast(e.clientX, e.clientY) > threshold) {
+            globalIndex++;  
             const leadIndex = globalIndex % images.length;
             const tailIndex = (globalIndex - 1 + images.length) % images.length;
 
@@ -33,12 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
             activate(lead, e.clientX, e.clientY);
 
             if (globalIndex > 0) {
-                tail.dataset.status = "inactive";
+                tail.dataset.status = "inactive"; 
             }
 
             updatePhotoCount();
-
-            globalIndex++;
         }
     }
 
@@ -47,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ontouchmove = e => handleOnMove(e.touches[0]);
 
     const updatePhotoCount = () => {
-        currentPhoto.textContent = (globalIndex % images.length) + 1;
+        currentPhoto.textContent = globalIndex >= 0 ? (globalIndex % images.length) + 1 : 0;
         totalPhotosElem.textContent = totalPhotos;
     };
 
