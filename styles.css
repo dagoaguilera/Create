@@ -71,14 +71,6 @@ body {
   z-index: 10003;
 }
 
-#categories {
-  display: flex;
-  gap: 10px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 #photo-count {
   font-weight: var(--font-weight-normal);
 }

@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePhotoCount();
 
     const photographerName = document.getElementById('photographer-name');
-    const menuOptions = document.getElementById('menu-options');
     let menuIsOpen = false;
 
     const toggleMenu = () => {
