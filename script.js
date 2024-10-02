@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPhoto = document.getElementById('current-photo');
     const totalPhotos = images.length;
 
+    Array.from(images).forEach(image => {
+        const aspectRatio = image.naturalWidth / image.naturalHeight;
+        if (aspectRatio > 1) {
+            image.classList.add('landscape');
+        } else {
+            image.classList.add('portrait');
+        }
+    });
+
     let globalIndex = -1,
         last = { x: 0, y: 0 },
         threshold = window.innerWidth / 40;

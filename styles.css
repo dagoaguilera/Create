@@ -34,19 +34,26 @@ body {
 }
 
 .image {
-  width: 62vmin;
   position: absolute;
   transform: translate(-50%, -50%);
-  transition: opacity 0s, transform 0s; 
+  transition: opacity 0s, transform 0s;
 }
 
 .image[data-status="inactive"] {
   opacity: 0;
-  display: block; 
+  display: block;
 }
 
 .image[data-status="active"] {
   opacity: 1;
+}
+
+.image.landscape {
+  width: 90vmin;
+}
+
+.image.portrait {
+  height: 85vmin;
 }
 
 
