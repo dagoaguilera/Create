@@ -1,120 +1,65 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const images = document.getElementsByClassName("image");
+    const images = Array.from(document.getElementsByClassName("image"));
     const totalPhotosElem = document.getElementById('total-photos');
-    const currentPhoto = document.getElementById('current-photo');
+    const currentPhotoElem = document.getElementById('current-photo');
+    const photographerName = document.getElementById('photographer-name');
+    const menuOverlay = document.getElementById("myNav");
     const totalPhotos = images.length;
-
-    Array.from(images).forEach(image => {
-        const aspectRatio = image.naturalWidth / image.naturalHeight;
-        if (aspectRatio > 1) {
-            image.classList.add('landscape');
-        } else {
-            image.classList.add('portrait');
-        }
-    });
-
-    let globalIndex = -1,
-        last = { x: 0, y: 0 },
-        threshold = window.innerWidth / 40;
-
-    const activate = (image, x, y) => {
-        image.style.left = `${x}px`;
-        image.style.top = `${y}px`;
-        image.style.zIndex = globalIndex;
-
-        image.dataset.status = "active"; 
-
-        last = { x, y };
-    }
-
-    const distanceFromLast = (x, y) => {
-        return Math.hypot(x - last.x, y - last.y);
-    }
-
-    const handleOnMove = e => {
-        if (distanceFromLast(e.clientX, e.clientY) > threshold) {
-            globalIndex++;  
-            const leadIndex = globalIndex % images.length;
-            const tailIndex = (globalIndex - 1 + images.length) % images.length;
-
-            const lead = images[leadIndex];
-            const tail = images[tailIndex];
-
-            activate(lead, e.clientX, e.clientY);
-
-            if (globalIndex > 0) {
-                tail.dataset.status = "inactive"; 
-            }
-
-            updatePhotoCount();
-        }
-    }
-
-    window.onmousemove = e => handleOnMove(e);
-
-    window.ontouchmove = e => handleOnMove(e.touches[0]);
+    let currentIndex = 0;
 
     const updatePhotoCount = () => {
-        currentPhoto.textContent = globalIndex >= 0 ? (globalIndex % images.length) + 1 : 0;
+        currentPhotoElem.textContent = currentIndex + 1;
         totalPhotosElem.textContent = totalPhotos;
     };
 
-    updatePhotoCount();
-
-    const photographerName = document.getElementById('photographer-name');
-    let menuIsOpen = false;
-
-    const toggleMenu = () => {
-        if (menuIsOpen) {
-            menuOptions.classList.add('hide');
-            menuOptions.classList.remove('show');
-            menuIsOpen = false;
-        } else {
-            menuOptions.classList.add('show');
-            menuOptions.classList.remove('hide');
-            menuIsOpen = true;
-        }
+    const showImage = (index) => {
+        images.forEach((img, i) => {
+            img.classList.toggle('active', i === index);
+        });
+        updatePhotoCount();
     };
 
-    const closeMenuOnClickOutside = (e) => {
-        if (!menuOptions.contains(e.target) && !photographerName.contains(e.target)) {
-            menuOptions.classList.add('hide');
-            menuOptions.classList.remove('show');
-            menuIsOpen = false;
-            document.removeEventListener('click', closeMenuOnClickOutside);
+    showImage(currentIndex);
+
+    const navigate = (direction) => {
+        currentIndex = (currentIndex + direction + images.length) % images.length;
+        showImage(currentIndex);
+    };
+
+    window.addEventListener('click', (e) => {
+        const middleX = window.innerWidth / 2;
+        if (e.clientX > middleX) {
+            navigate(1); 
+        } else {
+            navigate(-1); 
         }
+    });
+
+    const openNav = () => {
+        menuOverlay.style.display = 'block';
+        setTimeout(() => {
+            menuOverlay.classList.add("show");
+            menuOverlay.classList.remove("hide");
+        }, 0);
+    };
+
+    const closeNav = () => {
+        menuOverlay.classList.add("hide");
+        menuOverlay.classList.remove("show");
+        menuOverlay.addEventListener('transitionend', () => {
+            if (menuOverlay.classList.contains('hide')) {
+                menuOverlay.style.display = 'none';
+            }
+        }, { once: true });
     };
 
     photographerName.addEventListener('click', (e) => {
         e.stopPropagation();
-        toggleMenu();
-        if (menuIsOpen) {
-            setTimeout(() => {
-                document.addEventListener('click', closeMenuOnClickOutside);
-            }, 0);
-        }
+        openNav();
     });
 
-    window.addEventListener('load', updatePhotoCount);
+    document.querySelector('.closebtn').addEventListener('click', (e) => {
+        closeNav();
+        e.stopPropagation();
+    });
 });
-
-function openNav() {
-    const overlay = document.getElementById("myNav");
-    overlay.style.display = 'block';
-    setTimeout(() => {
-        overlay.classList.add("show");
-        overlay.classList.remove("hide");
-    }, 0);
-}
-
-function closeNav() {
-    const overlay = document.getElementById("myNav");
-    overlay.classList.add("hide");
-    overlay.classList.remove("show");
-    
-    overlay.addEventListener('transitionend', () => {
-        if (overlay.classList.contains('hide')) {
-            overlay.style.display = 'none'; 
-        }
-    }, { once: true });
-}
