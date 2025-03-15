@@ -1,17 +1,19 @@
+/* General root styles for custom properties */
 :root {
-  --background-color: #1C1C1C; 
-  --text-color: #E8E8E8;
-  --menu-background-color: #2A2A2A; 
-  --menu-text-color: #DCDCDC; 
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --menu-background-color: #2A2A2A;
+  --menu-text-color: #DCDCDC;
   --font-family: 'Georgia', serif;
   --font-weight-normal: 400;
   --font-size: 23px;
+  --image-scale: 100%;
 }
 
 html, body {
   height: 100%;
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -27,26 +29,81 @@ body {
   font-weight: var(--font-weight-normal);
 }
 
+/* Gallery styles */
 .gallery {
-  position: relative;
+  column-count: 3; /* Number of columns */
+  column-gap: 15px; /* Gap between columns */
+  padding: 10px;
+}
+
+.gallery-image {
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* Slow fade-in effect */
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  object-fit: contain; /* Keep aspect ratio without cropping */
+}
+
+.gallery-image.loaded {
+  opacity: 1; /* Image will fade in once loaded */
+}
+
+.gallery-image:hover {
+  transform: scale(1.03);
+}
+
+/* Adjust number of columns for smaller screens */
+@media (max-width: 1200px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 800px) {
+  .gallery {
+    column-count: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+/* Fullscreen styles */
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: calc(100vh - 60px);
-  overflow: hidden;
+  align-items: center;
+  z-index: 999;
+}
+
+.fullscreen-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
 }
 
 .image {
-  max-width: 100vw; 
-  max-height: 90vh; 
+  max-width: 100vw;
+  max-height: 90vh;
   display: none;
-  object-fit: contain; 
+  object-fit: contain;
 }
 
 .image.active {
   display: block;
 }
-
 
 .image.landscape {
   width: 90vmin;
@@ -56,7 +113,7 @@ body {
   height: 85vmin;
 }
 
-
+/* Bottom menu */
 #bottom-menu {
   display: flex;
   justify-content: space-between;
@@ -82,6 +139,7 @@ body {
   font-weight: var(--font-weight-normal);
 }
 
+/* Overlay styles */
 .overlay {
   height: 100%;
   width: 100%;
@@ -117,7 +175,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent; 
+  background-color: transparent;
   color: white;
   border: none;
   border-radius: 50%;
@@ -125,12 +183,11 @@ body {
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  transition: color 0.3s, transform 0.3s; 
-  text-decoration: none; 
+  transition: color 0.3s, transform 0.3s;
 }
 
 .overlay .closebtn:hover {
-  color: rgba(255, 255, 255, 0.8); 
+  color: rgba(255, 255, 255, 0.8);
   transform: scale(1.1);
 }
 
@@ -139,7 +196,7 @@ body {
   transform: scale(0.9);
 }
 
-.vertical-overlay-content {
+.overlay .vertical-overlay-content {
   display: grid;
   place-items: center;
   grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
@@ -152,7 +209,7 @@ body {
   padding: 2vh 0;
 }
 
-.vertical-overlay-content a {
+.overlay .vertical-overlay-content a {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,18 +218,16 @@ body {
   text-decoration: none;
   font-size: 5vw;
   color: white;
-  width: auto;
-  text-align: center;
 }
 
-.vertical-overlay-content a img {
+.overlay .vertical-overlay-content a img {
   margin-bottom: 1vh;
   max-width: 20vw;
   max-height: 20vh;
   height: auto;
 }
 
-.vertical-overlay-content a:hover,
-.vertical-overlay-content a:focus {
+.overlay .vertical-overlay-content a:hover,
+.overlay .vertical-overlay-content a:focus {
   color: #f1f1f1;
 }
