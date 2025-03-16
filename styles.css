@@ -3,7 +3,7 @@
   --text-color: #000000;
   --menu-background-color: #2A2A2A;
   --menu-text-color: #DCDCDC;
-  --font-family: 'Georgia', serif;
+  --font-family: 'Playfair Display', serif;
   --font-weight-normal: 400;
   --font-size: 23px;
   --image-scale: 100%;
@@ -30,8 +30,9 @@ body {
 
 .gallery {
   column-count: 4;
-  column-gap: 15px; 
+  column-gap: 15px;
   padding: 10px;
+  margin-top: 70px; 
 }
 
 .gallery-image {
@@ -41,11 +42,11 @@ body {
   height: auto;
   margin-bottom: 10px;
   border-radius: 4px;
-  object-fit: contain; 
+  object-fit: contain;
 }
 
 .gallery-image.loaded {
-  opacity: 1; 
+  opacity: 1;
 }
 
 .gallery-image:hover {
@@ -70,6 +71,7 @@ body {
   }
 }
 
+/* Fullscreen Overlay */
 .fullscreen {
   position: fixed;
   top: 0;
@@ -109,27 +111,31 @@ body {
   height: 85vmin;
 }
 
+/* Top Menu */
 #top-menu {
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   align-items: center;
   position: fixed;
-  top: 0; 
+  top: 0;
   left: 0;
   width: 100%;
   padding: 10px 20px;
   background-color: var(--background-color);
   color: var(--text-color);
   box-sizing: border-box;
-  z-index: 10000;
+  z-index: 10000; /* Ensures the menu stays on top */
+  height: 60px; 
 }
 
+/* Photographer Menu */
 #photographer-menu {
   position: relative;
   cursor: pointer;
   z-index: 10003;
 }
 
+/* Overlay for Menu */
 .overlay {
   height: 100%;
   width: 100%;
@@ -156,6 +162,7 @@ body {
   opacity: 0;
 }
 
+/* Close button for overlay */
 .overlay .closebtn {
   position: absolute;
   top: 2vw;
