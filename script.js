@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gallery = document.querySelector('.gallery');
-    const photoCount = document.getElementById('photo-count');
-    const currentPhotoElem = document.getElementById('current-photo');
-    const totalPhotosElem = document.getElementById('total-photos');
     const photographerName = document.getElementById('photographer-name');
     const menuOverlay = document.getElementById('myNav');
     const imageSources = [
@@ -15,26 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
         'images/6-IMG_0913.jpg',
         'images/DSCF1655.jpg',
         'images/DSCF1746.jpeg'
-
     ];
 
-    let totalPhotos = imageSources.length;
-    totalPhotosElem.textContent = totalPhotos;
-    currentPhotoElem.textContent = totalPhotos;
-
-    // Function to shuffle an array (Fisher-Yates Shuffle)
     const shuffleArray = (array) => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+            [array[i], array[j]] = [array[j], array[i]]; 
         }
     };
 
-    // Function to create dynamically resizing image grid
     const createImageGrid = () => {
-        gallery.innerHTML = ''; // Clear existing content
+        gallery.innerHTML = '';
 
-        // Shuffle the imageSources array to randomize image order
         shuffleArray(imageSources);
 
         imageSources.forEach((src, index) => {
@@ -43,25 +32,21 @@ document.addEventListener('DOMContentLoaded', () => {
             img.alt = `Photo ${index + 1}`;
             img.classList.add('gallery-image');
 
-            // Initially, keep images invisible until they're ready to fade in
             img.style.opacity = 0;
 
-            // Add event listener to add 'loaded' class once the image has loaded
             img.addEventListener('load', () => {
                 setTimeout(() => {
                     img.style.transition = 'opacity 1s ease-in-out';
-                    img.style.opacity = 1; // Fade in image one after the other
-                }, index * 500); // Stagger the fade-in by index (500ms delay between images)
+                    img.style.opacity = 1; 
+                }, index * 500);
             });
 
-            // Click to open fullscreen mode
             img.addEventListener('click', () => openFullscreen(img.src));
 
             gallery.appendChild(img);
         });
     };
 
-    // Function to open an image in fullscreen mode
     const openFullscreen = (src) => {
         const fullscreen = document.createElement('div');
         fullscreen.classList.add('fullscreen');
@@ -73,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Open overlay
     const openNav = () => {
         menuOverlay.style.display = 'block';
         setTimeout(() => {
@@ -82,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 0);
     };
 
-    // Close overlay
     const closeNav = () => {
         menuOverlay.classList.add("hide");
         menuOverlay.classList.remove("show");
@@ -93,18 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { once: true });
     };
 
-    // Open overlay on click
     photographerName.addEventListener('click', (e) => {
         e.stopPropagation();
         openNav();
     });
 
-    // Close overlay on close button click
     document.querySelector('.closebtn').addEventListener('click', (e) => {
         closeNav();
         e.stopPropagation();
     });
 
-    // Generate the gallery
     createImageGrid();
 });
