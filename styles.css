@@ -29,7 +29,7 @@ body {
 }
 
 .gallery {
-  column-count: 4;
+  column-count: 5;
   column-gap: 15px;
   padding: 10px;
   margin-top: 70px; 
@@ -111,7 +111,6 @@ body {
   height: 85vmin;
 }
 
-/* Top Menu */
 #top-menu {
   display: flex;
   justify-content: flex-start;
@@ -124,7 +123,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   box-sizing: border-box;
-  z-index: 10000; /* Ensures the menu stays on top */
+  z-index: 10000;
   height: 60px; 
 }
 
