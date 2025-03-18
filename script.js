@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'images/IMG_0979.jpg',
         'images/N0000452.jpeg',
         'images/6-IMG_0913.jpg',
-        'images/DSCF1655.jpg',
-        'images/DSCF1746.jpeg'
+        'images/DSCF1746.jpeg',
+        'images/DSCF1655.jpg'
+
     ];
 
     const shuffleArray = (array) => {
