@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'images/6-IMG_0913.jpg',
         'images/DSCF1746.jpeg',
         'images/DSCF1655.JPG', 
-        'images/DSCF1734.JPG'
+        'images/DSCF1734.jpeg'
 
     ];
 
